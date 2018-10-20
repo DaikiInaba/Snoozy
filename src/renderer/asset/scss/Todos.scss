@@ -1,0 +1,113 @@
+.Todos {
+  position: relative;
+  margin-top: 85px;
+  width: 100%;
+  height: calc(100% - 85px);
+  background-color: $white;
+  overflow: scroll;
+
+  .Todo {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    margin: 30px 20px;
+    padding: 15px;
+    max-height: 120px;
+    border-left: 4px solid $blue-darker;
+    background-color: #fff;
+    box-shadow: 0 3px 5px rgba(#000, .025);
+    transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 200ms;
+
+    .Done {
+      position: relative;
+      width: 45px;
+
+      .Button {
+        position: relative;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        border: 2px solid darken($white, 10%);
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all ease-in-out 100ms;
+
+        &:before {
+          content: '';
+          display: block;
+          position: absolute;
+          z-index: 0;
+          width: 100%;
+          height: 100%;
+          background: $gradient;
+          opacity: 0;
+          transition: all ease-in-out 100ms;
+        }
+
+        svg {
+          position: relative;
+          z-index: 2;
+          margin: 5px;
+          width: 16px;
+          height: 16px;
+
+          path {
+            fill: darken($white, 10%)
+          }
+        }
+      }
+    }
+
+    .Info {
+      position: relative;
+
+      .Title {
+        min-height: 30px;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        line-height: 30px;
+        word-break: break-all;
+        color: $black;
+      }
+
+      .Interval {
+        height: 30px;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 30px;
+        color: darken($white, 10%);
+      }
+    }
+
+    &.RemovePhase1 {
+      .Done {
+        .Button {
+          border-color: $blue-darker;
+
+          &:before {
+            opacity: 1;
+          }
+
+          svg {
+            path {
+              fill: #fff;
+            }
+          }
+        }
+      }
+
+      &.RemovePhase2 {
+        transform: translateX(-$width);
+
+        &.RemovePhase3 {
+          margin: 0;
+          padding: 0;
+          max-height: 0;
+          transition: all cubic-bezier(0.23, 1, 0.32, 1) 350ms;
+          transform: translateX(-$width);
+        }
+      }
+    }
+  }
+}

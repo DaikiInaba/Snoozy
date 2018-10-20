@@ -1,0 +1,223 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  cursor: default; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; }
+
+html {
+  font-family: helvetica neue; }
+
+.Container {
+  position: absolute;
+  width: 400px;
+  height: 700px; }
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: fixed;
+  z-index: 2;
+  padding: 25px 20px 0 20px;
+  width: 100%;
+  height: 85px;
+  background-color: #ffffff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  -webkit-app-region: drag; }
+  .Header .Title {
+    font-size: 33px;
+    font-weight: bold;
+    line-height: 60px;
+    background: linear-gradient(220deg, #0174fc, #064bd6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; }
+  .Header .Actions {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%; }
+    .Header .Actions .Action {
+      position: relative;
+      margin-left: 10px;
+      width: 38px;
+      height: 38px;
+      border-radius: 25px;
+      overflow: hidden;
+      background-color: #f4f7fe;
+      transition: all ease-out 100ms; }
+      .Header .Actions .Action:before {
+        content: '';
+        display: block;
+        position: absolute;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(220deg, #0174fc, #064bd6);
+        opacity: 0;
+        transition: all ease-out 100ms; }
+      .Header .Actions .Action svg {
+        position: relative;
+        z-index: 4;
+        margin: 9px;
+        width: 20px;
+        height: 20px;
+        transition: all ease-out 100ms; }
+        .Header .Actions .Action svg path {
+          fill: #0174fc; }
+      .Header .Actions .Action.Active:before {
+        opacity: 1; }
+      .Header .Actions .Action.Active svg path {
+        fill: #f4f7fe; }
+
+.Todos {
+  position: relative;
+  margin-top: 85px;
+  width: 100%;
+  height: calc(100% - 85px);
+  background-color: #f4f7fe;
+  overflow: scroll; }
+  .Todos .Todo {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    margin: 30px 20px;
+    padding: 15px;
+    max-height: 120px;
+    border-left: 4px solid #064bd6;
+    background-color: #fff;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.025);
+    transition: all cubic-bezier(0.165, 0.84, 0.44, 1) 200ms; }
+    .Todos .Todo .Done {
+      position: relative;
+      width: 45px; }
+      .Todos .Todo .Done .Button {
+        position: relative;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        border: 2px solid #c5d5fa;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: all ease-in-out 100ms; }
+        .Todos .Todo .Done .Button:before {
+          content: '';
+          display: block;
+          position: absolute;
+          z-index: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(220deg, #0174fc, #064bd6);
+          opacity: 0;
+          transition: all ease-in-out 100ms; }
+        .Todos .Todo .Done .Button svg {
+          position: relative;
+          z-index: 2;
+          margin: 5px;
+          width: 16px;
+          height: 16px; }
+          .Todos .Todo .Done .Button svg path {
+            fill: #c5d5fa; }
+    .Todos .Todo .Info {
+      position: relative; }
+      .Todos .Todo .Info .Title {
+        min-height: 30px;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        line-height: 30px;
+        word-break: break-all;
+        color: #1a1a1a; }
+      .Todos .Todo .Info .Interval {
+        height: 30px;
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 30px;
+        color: #c5d5fa; }
+    .Todos .Todo.RemovePhase1 .Done .Button {
+      border-color: #064bd6; }
+      .Todos .Todo.RemovePhase1 .Done .Button:before {
+        opacity: 1; }
+      .Todos .Todo.RemovePhase1 .Done .Button svg path {
+        fill: #fff; }
+    .Todos .Todo.RemovePhase1.RemovePhase2 {
+      transform: translateX(-400px); }
+      .Todos .Todo.RemovePhase1.RemovePhase2.RemovePhase3 {
+        margin: 0;
+        padding: 0;
+        max-height: 0;
+        transition: all cubic-bezier(0.23, 1, 0.32, 1) 350ms;
+        transform: translateX(-400px); }
+
+.Form {
+  position: fixed;
+  z-index: 4;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 30px 20px;
+  width: 380px;
+  border-radius: 10px 10px 0 0;
+  background: linear-gradient(220deg, #0174fc, #064bd6);
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) 500ms; }
+  .Form.Active {
+    transform: translateY(-100%);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); }
+  .Form input[type=text] {
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.05);
+    font-weight: 200;
+    letter-spacing: 1px;
+    color: #f4f7fe;
+    caret-color: #f4f7fe;
+    transition: all ease-out 200ms; }
+    .Form input[type=text]:focus {
+      outline: none;
+      background-color: rgba(0, 0, 0, 0.15); }
+    .Form input[type=text]::placeholder {
+      color: rgba(0, 0, 0, 0.2); }
+  .Form .Title {
+    width: 100%;
+    height: 45px;
+    font-size: 20px; }
+  .Form .Interval {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 20px;
+    width: 100%;
+    height: 45px;
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: 1px;
+    color: #f4f7fe; }
+    .Form .Interval input {
+      margin-left: 8px;
+      font-size: 16px;
+      text-align: center; }
+    .Form .Interval .Value {
+      width: 45px; }
+    .Form .Interval .Unit {
+      width: 88px; }
+  .Form .Save {
+    width: 100%;
+    height: 45px;
+    margin-top: 20px;
+    border-radius: 25px;
+    background-color: #f4f7fe;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 45px;
+    letter-spacing: 1px;
+    text-align: center;
+    line-height: 45px;
+    color: #064bd6; }
+    .Form .Save:focus {
+      outline: none; }
